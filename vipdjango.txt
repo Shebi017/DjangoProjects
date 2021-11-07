@@ -1,0 +1,334 @@
+
+# Manging Static Files
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    '/var/www/static/',
+]
+
+######Adding DIR for Templates
+
+BASE_DIR / "templates"
+
+
+# Choice Field or Category Field in Django
+
+YEAR_IN_SCHOOL_CHOICES = [
+    ('FR', 'Freshman'),
+    ('SO', 'Sophomore'),
+    ('JR', 'Junior'),
+    ('SR', 'Senior'),
+    ('GR', 'Graduate'),
+]
+
+year_in_school = models.CharField(
+        max_length=2,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        default=FRESHMAN,
+    )
+
+///////////////////////  Auto Field ////////////////////
+
+product_id = models.AutoField
+
+##  How to display more info of objects in admin panel
+ admin.site.register(Student) # only one attribute
+# for more info used 
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['id','name','roll']
+
+# how to get last some values
+
+    threeposts = Post.objects.all().order_by('-id')[:3]
+
+##############################################
+
+
+
+# Managing Media Files OR Images
+
+step-1 : Go setting And addd these
+
+MEDIA_ROOT=BASE_DIR / "static"
+MEDIA_URLS='/media/'
+
+step-2 : Go urls of Project and add these
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+
+############## User Authentication System################
+
+# For login keleya
+
+from django.contrib.auth.models import User
+from django.contrib.auth import logout,authenticate,login
+
+# method is used to check user
+
+user = authenticate(username=username, password=password)
+
+
+#if ok then go to home page
+#else go to again login page
+
+
+def my_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        ...
+    else:
+        # Return an 'invalid login' error message.
+        ...
+
+
+############################################
+how to check anonymous user in django
+
+if request.user.is_anonymous:
+        return redirect("/login")
+
+#########################################
+LOGOUT
+
+from django.contrib.auth import logout
+
+logout(request)
+and return something
+
+# Registeration or Create User
+
+user = User.objects.create_user(email=email,username=username,password=password,last_name=lname,first_name=fname)
+        user.save()
+
+
+###########################################################
+Changing Admin title and Admin Login
+
+# Changing name of by default
+admin.site.site_header = "Shahzaib Admin"
+admin.site.site_title = "Shahzaib Admin Portal"
+admin.site.index_title = "Welcome to Shahzaib Researcher Portal"
+
+
+#########################################
+CMD COMMAND
+	vesion check  :   	python --version
+
+Virtual Enviornment
+	pip install virtualenvwrapper-win
+
+
+
+# create virtual enviornment named venv
+	mkvirtualenv Myenv
+
+# active again
+workon Myenv
+
+
+
+
+#####################################################		How to add Model in Templates and Forms etc ##################################################
+
+
+step -1 #  
+		Create new file in app directory and name it forms.py and add the following code : 
+
+				from django.forms import ModelForm
+				from .models import Order # import karo models ko jes ka app ne form banana ha etc Order,Product
+
+				# naming convention ha ka Models_nameForm
+				class OrderForm(ModelForm):
+    
+    				class Meta:
+
+        					model = Order
+        					fields = "__all__" 	 #    fields=['custome','product'] for some fields
+
+
+step -2 #  
+
+		Import form into views and sent context
+
+			from account.forms import OrderForm
+			
+			def create_order(request):
+   				 form=OrderForm()
+    				 context={
+       					 	'form':form,
+   					 }
+   				 return render(request,"accounts/create_order.html",context)
+
+
+
+step -3 # For submit then sent to Views so : 
+
+		 if request.method=="POST":
+       			form=CustomerForm(request.POST)
+        		if form.is_valid():
+            			form.save()
+            			return redirect("/")
+
+
+
+
+
+{{form.as_p}}
+
+
+class Meta :
+	ordering = ['-updated ' , '-created']
+
+For update :
+
+room = Room.objects.get(id=pk)
+
+form = RoomForm(instance=room)
+
+if request.method == 'POST':
+
+	form = RoomForm(request.POST , instance =room)
+
+now save it if conditions also..
+and then pass context means form
+
+
+
+### For Delete 
+
+
+<form method = "POST" action="">
+
+crsf_token
+
+<p> Are you sure you want to delete "obj" ? </p> # obj means which object you delete it is passed in context
+
+<a href = "{{ request.META.HTTP_REFERER}}"> GO BACK </p>
+
+<input type = "submit" value = "Confirm" />
+
+<form>
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+				Filter in Django 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ {% url 'home' %}?q={{gcategory.id}}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+ q = request.GET.get('q')  if request.GET.get('q') != None else ""
+    recentposts = Post.objects.filter(category__name__contains=q)
+
+
+Dynamic filter :   more than one fields se filter karna ho tu phir :
+
+	from django.db.models import Q  
+This alow you to use & and | or functionality in filter
+
+	reentpost = Post.objects.filter(
+				Q(category__name__icontains = q) |
+				Q(name__icontains = q) |
+				Q(description__icontains = q) 
+
+				)
+
+
+
+
+
+///////////////////////////////////////  	Flash Messages  ////////////////////////////////////////
+
+step-1 : first import in views.py file
+
+		from django.contrib import messages
+
+step-2 : Then add message where you show it .
+
+messages.debug(request, '%s SQL statements were executed.' % count)
+messages.info(request, 'Three credits remain in your account.')
+messages.success(request, 'Profile details updated.')
+messages.warning(request, 'Your account expires in three days.')
+messages.error(request, 'Document deleted.')
+
+step-3 : Finally display messages in Templates
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+//////////////////////////////////////   Working with Some Javascript ///////////////////////////////
+
+from django.http import JsonResponse
+
+
+
+Uploading JSON data
+Use fetch() to POST JSON-encoded data.
+
+const data = { username: 'example' };
+
+fetch('https://example.com/profile', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+
+
+########### Now CSRF TOken ###################
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+
+and Add in header 
+
+		'X-CSRFToken': csrftoken

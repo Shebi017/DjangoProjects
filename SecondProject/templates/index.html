@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Wellcome to Home Page !! You are register User and Your Name is {{request.user}}</h1>
+
+<div class="mycontainer">
+    <div class="mycard">
+        <div class="myimg">
+            <img src="{% static 'jean1.png' %}" alt="Image not found">
+        </div>
+        <div class="text">
+            <h1>Product Name</h1>
+            <p class="description">This is description of my product.......</p>
+            <div class="btn">
+                <button class="mybutton" id="mybutton1">
+                    Add to cart
+                </button>
+                <button class="mybutton" id="mybutton2">
+                    View Details
+                </button>
+            </div>
+
+        </div>
+       
+        
+
+    </div>
+</div>
+
+
+{% endblock content %}

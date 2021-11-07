@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+
+        <div class="container" style="border: 1px solid black;margin: 20px; padding: 10px; text-align: center; background-color: #eee;">
+            <img src="{{post.image.url}}" alt="" width="240px" height="240px">
+            <h2>{{post.title}}</h2>
+            <h4>{{post.category}}</h4>
+            <p>{{post.content}}</p>
+        </div>
+
+{% endfor %}
+
+{% endblock content %}

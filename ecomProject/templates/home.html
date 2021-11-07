@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+{% load static %}
+{% block content %}
+
+    <!-- Start of Crousal -->
+    <div class="row">
+
+     <div class="carousel carousel-slider">
+        <a class="carousel-item" href="#one!"><img src="{%static 'images/banner2.jpg' %}" class="carosel-image"></a>
+        <a class="carousel-item" href="#two!"><img src="{%static 'images/banner1.jpg' %}" class="carosel-image"></a>
+        <a class="carousel-item" href="#three!"><img src="{%static 'images/banner3.jpg' %}" class="carosel-image"></a>
+      </div>
+
+    </div>
+
+    <!-- End of Crosual Section -->
+
+    <!-- Section Dividar -->
+
+    <div class="mydivider">
+
+    </div>
+
+     <!-- End of Section Divider -->
+
+    <!-- Featured Product Section -->
+    <div class="myfeature">
+        <h4 style="padding-left: 35px;">Featured Product</h4>
+        <div class="carousel">
+            <!-- First Carousel Item -->
+            
+            <a class="carousel-item" href="#one!">
+                <img src="{%static 'images/p1.jpg' %}" alt="" class="fimg">                
+            </a>
+
+            <!-- Second Carousel Item -->
+            
+            <a class="carousel-item" href="#one!">
+                <img src="{%static 'images/p2.jpg' %}" alt="" class="fimg">                
+            </a>
+
+            <!-- Third Carousel Item -->
+            
+            <a class="carousel-item" href="#one!">
+                <img src="{%static 'images/p3.jpg' %}" alt="" class="fimg">                
+            </a>
+
+            <a class="carousel-item" href="#one!">
+                <img src="{%static 'images/p4.jpg' %}" alt="" class="fimg">                
+            </a>
+            <a class="carousel-item" href="#one!">
+                <img src="{%static 'images/p5.jpg' %}" alt="" class="fimg">                
+            </a>
+
+            
+           
+           
+          </div>
+    </div>
+    <!-- End of Featured Product Section -->
+
+
+      <!-- Section Dividar -->
+
+      <div class="mydivider">
+
+    </div>
+
+     <!-- End of Section Divider -->
+     <h4 style="padding-left: 35px; margin-bottom: 70px;">All Products</h4>
+
+     <div class="container">
+        
+            {% for product in products  %}
+                <div class="col s6 m6 l6 pimg">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{product.img.url}}"  height="250px">
+                        </div>
+                        <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{product.name}}<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class="waves-effect waves-light btn"><i class="material-icons left">shopping_cart</i>Add to Cart</a></p>
+                        </div>
+                        <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{product.name}}<i class="material-icons right">close</i></span>
+                        <p>{{product.desc}}</p>
+                        <h3>Price : ${{product.price}}<h3>
+                        </div>
+                    </div>
+               
+            {% endfor %}
+        </div>
+         
+     </div>
+
+
+   
+
+
+{% endblock content %}

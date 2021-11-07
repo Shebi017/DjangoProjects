@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card my-5">
+
+                <div class="card-body">
+                    <div class="card-header">
+                        <a href="/cart"  class="btn btn-outline-dark my-3 mx-5">Go Back to Cart</a>          
+                    </div>
+                    <div class="card-title">
+                        <h3 class="text-center">Shiping Information</h3>
+                    </div>
+                    <label for="" class="label-form">Enter City</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Adress</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Zipcode</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Country Code</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Country Code</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Country Code</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Country Code</label>
+                    <input type="text" class="form-control">
+                    <label for="" class="label-form">Enter Country Code</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="card my-5">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3>Order Summary</h3>
+                    </div>
+                    <div class="card-text">
+                        <table class="table">
+                            <thead>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="{%static 'images/banner1.jpg'%}" alt=""class="cartimg"></td>
+                                    <td>My Product Title</td>
+                                    <td>$ 330.0</td>
+                                    <td>2</td>
+                                    <td>$ 660.0</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="{%static 'images/banner3.jpg'%}" alt="" class="cartimg"></td>
+                                    <td>My Product Title</td>
+                                    <td>$ 330.0</td>
+                                    <td>2</td>
+                                    <td>$ 660.0</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="{%static 'images/banner2.jpg'%}" alt=""class="cartimg"></td>
+                                    <td>My Product Title</td>
+                                    <td>$ 330.0</td>
+                                    <td>2</td>
+                                    <td>$ 660.0</td>
+                                </tr>
+                            </tbody>
+                        </table>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

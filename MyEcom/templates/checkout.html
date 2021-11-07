@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+
+
+{% block content %}
+
+<div class="container my-5" >
+    <a href="/cart"><button class="btn btn-outline-success" style="width: 240px; height: 50px; margin-bottom: 30px;" >  🠔 Go back to Cart</button></a> 
+    <div class="row">
+        <div class="col-6" style="border: 2px solid rgb(233, 225, 225); border-radius: 12px; padding: 20px;">
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">City</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Zipcode</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Phone </label>
+                  <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        <div class="col-5 mx-5">
+            <h2>Order Details</h2>
+            <div class="card">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Picture</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="text-align: center; ">
+                          <th><img src="{% static 'images/p4.jpg'%}" alt="" style="height: 100px; width: 100px;"></th>
+                          <td>Shoes</td>
+                          <td>23$</td>
+                          <td>4</td>
+                          <td>233$</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<div class="container my-5">
+    <a href="">Payment method </a>
+</div>
+{% endblock content %}

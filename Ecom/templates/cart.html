@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+
+{% block content %}
+
+<div class="container m-md-5">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                <a href="/" class="btn btn-outline-dark">Go back to Store</a>
+                                <h4 class="my-4">Total Item  :  5</h4>
+                            </div>
+                            <div class="offset-4 col-4">
+                                <a href="/checkout" class="btn btn-outline-dark">Checkout</a>
+                                <h4 class="my-4">Total :  $999.00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container m-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td><img src="{{item.product.image.url}}" alt=""class="cartimg"></td>
+                                <td>{{item.product.name}}</td>
+                                <td>{{item.product.price}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>$ 660.0</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>   
+                <a href="/checkout"  class="btn btn-outline-dark my-3 mx-5">Checkout</a>          
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

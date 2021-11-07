@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!-- Materialized Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- JQuery CDN Link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .carosel-image{
+            height: 500px;
+        }
+        .mydivider{
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+        .fimg{
+            /* width: 350px; */
+            height: 240px;
+        }
+        .card-img{
+            height: 175px;
+            width: 280px;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Navbar Section -->
+    
+        <nav class="#37474f blue-grey darken-3">
+            <div class="nav-wrapper">
+              
+              <ul class="left hide-on-med-and-down">
+
+                <li><a href="/" style="font-size:30px; font-family:cursive;">Ecom</a></li>
+                <li><a href="/" style="padding-left: 30px;">Store</a></li>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+              </ul>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="/login" class="waves-effect waves-light btn">Login</a></li>
+                <li style="padding-right:20px;"><a href="/cart"><i class="large material-icons">shopping_cart</i></a></li>           
+              </ul>
+            </div>
+        </nav>
+   
+      
+
+    
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    
+    <!-- End of Navbar Sectoion -->
+
+
+
+
+   
+    {% block content %}{% endblock content %}
+
+
+
+    <!--Materialized Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $('.carousel.carousel-slider').carousel({
+                fullWidth: true,
+                indicators:true,
+             });
+            $('.carousel').carousel();
+        });
+    </script>
+    
+</body>
+</html>

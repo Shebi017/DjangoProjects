@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container" style=" height: 300; width: 300; text-align: center; margin:80px auto; padding: 100px;">
+    <h2 style="display: inline;">SIGN IN </h2>
+    <br><br> 
+    <br><br>
+    <form action="\login" method="POST">
+    {% csrf_token %}
+        <input type="text" name="username" id="" style="width: 300px; height: 25px; padding: 14px;" placeholder="Username">
+        <br><br><br>
+        <input type="password" name="password" id="" style="width: 300px; height: 25px; padding: 14px;" placeholder="Password">
+
+        <br><br><br><br>
+        <button type="submit" style="padding: 10px; background-color: firebrick; color: white; border: none; width: 200px; border-radius: 20;">LOGIN</button>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    <h2>This is my Home Page !</h2> 
+
+    {% include 'components/cards.html' %}
+
+
+    <div class="container m-5 p-5">
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-3">
+                    <div class="card">
+                        <img src={{post.img}} alt="">
+                        <h3>{{post.title}}</h3>
+                        <h5>{{post.date}}</h5>
+                        <h6>{{post.choice}}</h6>
+                        <p>{{post.date}}</p>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
